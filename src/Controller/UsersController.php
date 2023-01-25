@@ -55,7 +55,6 @@ class UsersController extends AppController
         // print_r($users);die;
         $this->set(compact('users'));
     }
-
     /**
      * View method
      *
