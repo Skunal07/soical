@@ -35,7 +35,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
 
 
-    <?= $this->Html->css(['userprofile','nav']) ?>
+    <?= $this->Html->css(['userprofile','cake']) ?>
     <?= $this->Html->script('userp') ?>
 
     <?= $this->fetch('meta') ?>
@@ -43,7 +43,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-   <?= $this->element('flash/nav')?>
    
       
             <?= $this->Flash->render() ?>

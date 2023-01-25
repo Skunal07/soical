@@ -1,8 +1,4 @@
-/* Miligram overrides */
-body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 400;
-}
+
 
 .top-nav-links,
 .side-nav,
@@ -52,9 +48,7 @@ th a,
 }
 
 /* Main */
-body {
-    background: #f5f7fa;
-}
+
 .content {
     padding: 2rem;
     background: #ffffff;

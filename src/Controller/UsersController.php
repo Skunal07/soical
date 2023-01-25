@@ -134,6 +134,8 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
+
+        $this->viewBuilder()->setLayout('myprofile');
         $user = $this->Users->get($id, [
             'contain' => [],
         ]);
