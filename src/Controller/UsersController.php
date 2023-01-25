@@ -43,6 +43,18 @@ class UsersController extends AppController
 
         $this->set(compact('posts'));
     }
+    public function listuser()
+    {
+        $this->viewBuilder()->setLayout('myprofile');
+
+        $this->paginate = [
+            'contain' => ['Posts'],
+        ];
+        $users = $this->Users->find('all', ['order' => ['id' => 'DESC']]);
+        $users = $this->paginate($this->Users);
+        // print_r($users);die;
+        $this->set(compact('users'));
+    }
 
     /**
      * View method
