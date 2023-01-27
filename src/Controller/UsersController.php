@@ -47,11 +47,10 @@ class UsersController extends AppController
     {
         $this->viewBuilder()->setLayout('myprofile');
 
-        $this->paginate = [
-            'contain' => ['Posts'],
-        ];
+        
         $users = $this->Users->find('all', ['order' => ['id' => 'DESC']]);
-        $users = $this->paginate($this->Users);
+        // $users = $this->paginate($this->Users);
+        // echo '<pre>';
         // print_r($users);die;
         $this->set(compact('users'));
     }
@@ -70,20 +69,20 @@ class UsersController extends AppController
 
         $this->set(compact('user'));
     }
-    public function userprofile($uid=null)
+    public function userprofile($id=null)
     {
         $this->viewBuilder()->setLayout('myprofile');
         $user = $this->Authentication->getIdentity();
         $uid = $user->id;
-        $user = $this->Users->get($uid, [
+        $user = $this->Users->get($id, [
             'contain' => ['Posts'],
         ]);
         // $post=TableRegistry::get("Posts");
-        $count= $this->Posts->find()->where(['user_id' => $uid])->count();
+        $count= $this->Posts->find()->where(['user_id' => $id])->count();
         // echo '<pre>';
         // print_r($user);
         // die;
-        $this->set(compact('user','count'));
+        $this->set(compact('user','uid','count'));
     }
 
     /**
