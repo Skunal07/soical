@@ -1,11 +1,15 @@
-<?= $this->Html->css('listuser', ['block' => 'css']); ?>
 <div class="container">
     <div class="section ourTeam">
         <header class="text-center">
             <h2>Meet <strong>Our Team</strong></h2>
         </header>
         <div class="row">
-            <?php foreach ($users as $user) : ?>
+            <?php foreach ($users as $user) : 
+                if($user->id == $uid){
+                    continue;
+                }
+                ?>
+
             <div class="col-xs-6 col-sm-4 col-md-3 i">
                 <div class="c text-center">
                     <div class="wrap">

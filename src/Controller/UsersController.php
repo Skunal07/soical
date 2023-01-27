@@ -46,13 +46,14 @@ class UsersController extends AppController
     public function listuser()
     {
         $this->viewBuilder()->setLayout('myprofile');
-
+        $user = $this->Authentication->getIdentity();
+        $uid = $user->id;
         
         $users = $this->Users->find('all', ['order' => ['id' => 'DESC']]);
         // $users = $this->paginate($this->Users);
         // echo '<pre>';
         // print_r($users);die;
-        $this->set(compact('users'));
+        $this->set(compact('users','uid'));
     }
     /**
      * View method
@@ -144,7 +145,8 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
-
+        $user = $this->Authentication->getIdentity();
+        $uid = $user->id;
         $this->viewBuilder()->setLayout('myprofile');
         $user = $this->Users->get($id, [
             'contain' => [],
@@ -179,7 +181,7 @@ class UsersController extends AppController
                     }
                 }
                 $this->Flash->success(__('The user has been saved.'));
-                return $this->redirect(['action' => 'userprofile']);
+                return $this->redirect(['action' => 'userprofile',$uid]);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
@@ -213,19 +215,20 @@ class UsersController extends AppController
 
     public function viewpost($id = null, $user_id = null)
     {
+        $this->viewBuilder()->setLayout('mydefault');
         $user = $this->Authentication->getIdentity();
         $uid = $user->id;
         $post = $this->Posts->get($id, [
             'contain' => ['Users', 'Comments'],
         ]);
+        $comments = $this->Comments->find('all',['contain' => ['Users']])->where(['post_id'=>$id])->all();
         // $cname = $this->Comments->get( [
         //     'contain' => ['Users'],
         // ]);
         // echo '<pre>';
-        // print_r($cname);
-        // die;
-        $post['user_id'] = $user_id;
-        $comment = $this->Comments->newEmptyEntity();
+        // print_r($comments);die;
+        // $post['user_id'] = $user_id;
+        $comment = $this->Comments->newEmptyEntity();           
         if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->getData();
             
@@ -240,12 +243,9 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The comment could not be saved. Please, try again.'));
         }
-        // $comment = $this->Comments->get($uid, [
-        //     'contain' => ['Users'],
-        // ]);
 
 
-        $this->set(compact('post', 'comment'));
+        $this->set(compact('post', 'comment','uid','comments'));
     }
     // public function viewpost($id = null, $user_id = null)
     // {
@@ -304,10 +304,6 @@ class UsersController extends AppController
             $fileName = $productImage->getClientFilename();
             $data["image"] = $fileName;
             $post = $this->Posts->patchEntity($post, $data);
-
-
-
-            
             if ($this->Posts->save($post)) {
 
                 $hasFileError = $productImage->getError();
@@ -447,7 +443,7 @@ class UsersController extends AppController
                 $this->Flash->error(__('The comment could not be deleted. Please, try again.'));
             }
     
-            return $this->redirect(['action' => 'viewpost', $post_id,$uid]);
+            return $this->redirect(['action' => 'viewpost', $post_id,]);
         }
     }
     //forgot password

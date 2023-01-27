@@ -59,7 +59,7 @@
                             <?= h($post->title) ?>
                         </p>
                         <?php echo $this->Html->link(
-                            $this->Html->image($post->image, array('class' => 'ui-rect ui-bg-cover'))
+                            $this->Html->image($post->image,array('class' => 'ui-rect ui-bg-cover'))
                             ,
                             array(
                                 'controller' => 'Users',
