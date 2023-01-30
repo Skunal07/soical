@@ -12,9 +12,7 @@
             <h4 class="heading">
                 <?= __('Actions') ?>
             </h4>
-            <?php
-            echo $this->Html->link(__('List Post'), ['controller' => 'users', 'action' => 'view', $post->user_id], ['class' => 'side-nav-item']);
-            ?>
+            <?= $this->Html->link(__('List Post'), ['controller' => 'users', 'action' => 'view', $post->user_id], ['class' => 'side-nav-item']); ?>
         </div>
     </aside>
     <div class="column-responsive column-80">

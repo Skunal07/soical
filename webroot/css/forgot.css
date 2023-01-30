@@ -1,16 +1,14 @@
 
 body {
-    background-position: center;
-    background-color: #eee;
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background-position: center; */
+    /* background-color: #eee; */
     color: #505050;
     font-family: "Rubik",Helvetica,Arial,sans-serif;
     font-size: 14px;
     font-weight: normal;
     line-height: 1.5;
     text-transform: none;
-    background: url(/img/picf.jpg) no-repeat;
+    background: url(/img/anime1.jpg) no-repeat;
 }
 
 .forgot{
@@ -24,7 +22,7 @@ body {
 }
 
 .card-footer{
-	background-color: #fff;
+	background-color: rgba(255, 255, 255, 0);
 }
 
 .btn{ 
