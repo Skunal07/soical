@@ -60,8 +60,7 @@
                         </p>
                         <?php echo $this->Html->link(
                             $this->Html->image($post->image,array('class' => 'ui-rect ui-bg-cover'))
-                            ,
-                            array(
+                            ,array(
                                 'controller' => 'Users',
                                 'action' => 'viewpost', $post->id
                             )

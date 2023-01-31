@@ -181,7 +181,7 @@ class UsersController extends AppController
                     }
                 }
                 $this->Flash->success(__('The user has been saved.'));
-                return $this->redirect(['action' => 'userprofile',$uid]);
+                return $this->redirect(['action' => 'userprofile',$id]);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
@@ -406,6 +406,7 @@ class UsersController extends AppController
         $result = $this->Authentication->getResult();
         // regardless of POST or GET, redirect if user is logged in
         if ($result && $result->isValid()) {
+            
             // redirect to users after login success
             $redirect = $this->request->getQuery('redirect', [
                 'controller' => 'Users',
