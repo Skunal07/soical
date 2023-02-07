@@ -181,7 +181,7 @@ class UsersController extends AppController
                     }
                 }
                 $this->Flash->success(__('The user has been saved.'));
-                return $this->redirect(['action' => 'userprofile',$id]);
+                return $this->redirect(['action' => 'userprofile',$uid]);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
@@ -222,12 +222,6 @@ class UsersController extends AppController
             'contain' => ['Users', 'Comments'],
         ]);
         $comments = $this->Comments->find('all',['contain' => ['Users']])->where(['post_id'=>$id])->all();
-        // $cname = $this->Comments->get( [
-        //     'contain' => ['Users'],
-        // ]);
-        // echo '<pre>';
-        // print_r($comments);die;
-        // $post['user_id'] = $user_id;
         $comment = $this->Comments->newEmptyEntity();           
         if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->getData();
